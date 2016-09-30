@@ -1,6 +1,6 @@
-# kach-server
+# kach
 
-> Server code for the Kach web app project.
+> Main repo for the Kach web app project.
 
 * * *
 
