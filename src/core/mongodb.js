@@ -8,6 +8,7 @@
 
 import { MongoClient } from "mongodb";
 import Promise from "bluebird";
+import zouti from "zouti";
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/kach";
 
@@ -20,6 +21,7 @@ fInit = function() {
                 return fReject( oError );
             }
 
+            zouti.success( "Connected to DB", "kach" );
             fResolve( oDB = oLinkedDB );
         } );
     } );
