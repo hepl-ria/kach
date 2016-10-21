@@ -1,0 +1,27 @@
+{
+  "name": "kach",
+  "version": "0.0.1",
+  "main": "bin/server.js",
+  "repository": {
+    "url": "git@github.com:leny/kach.git",
+    "type": "git"
+  },
+  "author": "leny <info@flatland.be>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.16.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-eslint": "^3.0.1",
+    "gulp-util": "^3.0.7"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mitan-eko": "^0.1.0",
+    "mongodb": "^2.2.10",
+    "response-time": "^2.3.1",
+    "zouti": "^0.5.0"
+  }
+}
