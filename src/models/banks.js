@@ -6,8 +6,10 @@
  * started at 21/10/2016
  */
 
+// TODO: refactor this (init models from db connexion)
+
 import { db } from "../core/mongodb";
 
-let oBanks = db.collection( "banks" );
-
-export default oBanks;
+export default function() {
+    return db.collection( "banks" );
+}

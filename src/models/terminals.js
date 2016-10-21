@@ -8,6 +8,6 @@
 
 import { db } from "../core/mongodb";
 
-let oTerminals = db.collection( "terminals" );
-
-export default oTerminals;
+export default function() {
+    return db.collection( "terminals" );
+}
