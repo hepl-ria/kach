@@ -9,7 +9,7 @@
 import { Router } from "express";
 
 // import list from "../controllers/terminals/list";
-// import details from "../controllers/terminals/details";
+import details from "../controllers/terminals/details";
 // import create from "../controllers/terminals/create";
 // import update from "../controllers/terminals/update";
 // import destroy from "../controllers/terminals/destroy";
@@ -17,7 +17,7 @@ import { Router } from "express";
 let oRouter = new Router();
 
 // oRouter.get( "/terminals", list );
-// oRouter.get( "/terminals/:id", details );
+oRouter.get( "/terminals/:id", details );
 // oRouter.post( "/terminals", create );
 // oRouter.patch( "/terminals", update );
 // oRouter.delete( "/terminals", destroy );
