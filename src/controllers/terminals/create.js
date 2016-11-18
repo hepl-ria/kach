@@ -48,7 +48,13 @@ export default function( oRequest, oResponse ) {
     checkBank( sBankID )
         .then( fCreateTerminal )
         .then( () => {
-            send( oRequest, oResponse, oTerminal, 201 );
+            send( oRequest, oResponse, {
+                "id": oTerminal._id,
+                "address": oTerminal.address || null,
+                "bank": oTerminal.bank || null,
+                "latitude": oTerminal.latitude,
+                "longitude": oTerminal.longitude,
+            }, 201 );
         } )
         .catch( ( oError ) => error( oRequest, oResponse, oError ) );
 
