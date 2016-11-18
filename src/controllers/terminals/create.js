@@ -6,11 +6,10 @@
  * started at 18/11/2016
  */
 
-import Promise from "bluebird";
 import { ObjectID } from "mongodb";
 
 import getTerminals from "../../models/terminals";
-import getBanks from "../../models/banks";
+import { checkBank } from "../../models/banks";
 import { send, error } from "../../core/utils/api";
 import checkPosition from "../../core/utils/position";
 
@@ -23,7 +22,7 @@ export default function( oRequest, oResponse ) {
         sBankID = ( POST.bank || "" ).trim(),
         sAddress = ( POST.address || "" ).trim(),
         oPosition = checkPosition( iLatitude, iLongitude ),
-        oTerminal, fCheckBank, fCreateTerminal;
+        oTerminal, fCreateTerminal;
 
     if ( !oPosition ) {
         return error( oRequest, oResponse, "Invalid position", 400 );
@@ -38,32 +37,6 @@ export default function( oRequest, oResponse ) {
 
     sAddress && ( oTerminal.address = sAddress );
 
-    fCheckBank = () => {
-        let oBankID;
-
-        if ( !sBankID ) {
-            return Promise.resolve( false );
-        }
-
-        try {
-            oBankID = new ObjectID( sBankID );
-        } catch( oError ) {
-            return Promise.reject( new Error( "Invalid Bank ID!" ) );
-        }
-
-        return getBanks()
-            .findOne( {
-                "_id": oBankID,
-            } )
-            .then( ( oBank ) => {
-                if ( oBank ) {
-                    return Promise.resolve( true );
-                }
-
-                return Promise.reject( new Error( "Unknown Bank!" ) );
-            } );
-    };
-
     fCreateTerminal = ( bHasBank ) => {
         if ( bHasBank ) {
             oTerminal.bank = new ObjectID( sBankID );
@@ -72,7 +45,7 @@ export default function( oRequest, oResponse ) {
         return getTerminals().insertOne( oTerminal );
     };
 
-    fCheckBank()
+    checkBank( sBankID )
         .then( fCreateTerminal )
         .then( () => {
             send( oRequest, oResponse, oTerminal, 201 );
