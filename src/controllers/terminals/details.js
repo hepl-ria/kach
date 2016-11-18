@@ -29,12 +29,13 @@ export default function( oRequest, oResponse ) {
             "_id": new ObjectID( sTerminalID ),
             "deleted_at": null,
         } )
-        .then( ( { _id, bank, latitude, longitude, address, empty } ) => {
-            let oCleanTerminal;
-
-            if ( !_id ) {
+        .then( ( oTerminal ) => {
+            if ( !oTerminal ) {
                 return error( oRequest, oResponse, "Unknown Terminal", 404 );
             }
+
+            let { _id, bank, latitude, longitude, address, empty } = oTerminal,
+                oCleanTerminal;
 
             oCleanTerminal = {
                 "id": _id,
