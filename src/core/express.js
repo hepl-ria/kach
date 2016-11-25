@@ -15,6 +15,7 @@ import zouti from "zouti";
 import systemRoutes from "../routes/system";
 import banksRoutes from "../routes/banks";
 import terminalsRoutes from "../routes/terminals";
+import pagesRoutes from "../routes/pages";
 
 const APP_PORT = 12345;
 
@@ -36,10 +37,15 @@ fInit = function( iAppPort = APP_PORT ) {
         "extended": true,
     } ) );
 
+    // configure templates
+    oApp.set( "views", `${ __dirname }/../views` );
+    oApp.set( "view engine", "pug" );
+
     // routes
     oApp.use( systemRoutes );
     oApp.use( banksRoutes );
     oApp.use( terminalsRoutes );
+    oApp.use( pagesRoutes );
 
     // listening
     oApp.listen( iAppPort, () => {
