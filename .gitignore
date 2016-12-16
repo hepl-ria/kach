@@ -11,3 +11,4 @@ jspm_packages
 bin
 .vagrant
 static/css
+static/js
