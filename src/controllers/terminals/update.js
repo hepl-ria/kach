@@ -28,11 +28,12 @@ export default function( oRequest, oResponse ) {
         iLatitude = POST.latitude,
         iLongitude = POST.longitude,
         sBankID = ( POST.bank || "" ).trim(),
-        oPosition, aModifications = [];
+        aModifications = [],
+        oPosition;
 
     try {
         oTerminalID = new ObjectID( oRequest.params.id );
-    } catch( oError ) {
+    } catch ( oError ) {
         return error( oRequest, oResponse, new Error( "Invalid ID!" ), 400 );
     }
 
@@ -58,7 +59,7 @@ export default function( oRequest, oResponse ) {
                 }
 
                 // if position ≠ old position, check move distance
-                if ( oTerminal.latitude !== oPosition.latitude || oTerminal.longitude !== oPosition.longitude ) {
+                if ( oTerminal.latitude !== oPosition.latitude || oTerminal.longitude !== oPosition.longitude ) {
                     if ( distance( oPosition, oTerminal ) > MAX_MOVE_DISTANCE ) {
                         return error( oRequest, oResponse, new Error( "Movement is too big" ), 400 );
                     }

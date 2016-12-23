@@ -21,7 +21,7 @@ fCheckBank = function( sBankID ) {
 
     try {
         oBankID = new ObjectID( sBankID );
-    } catch( oError ) {
+    } catch ( oError ) {
         return Promise.reject( new Error( "Invalid Bank ID!" ) );
     }
 
