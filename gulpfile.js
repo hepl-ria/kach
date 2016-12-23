@@ -87,7 +87,7 @@ gulp.task( "styles", function() {
 
 gulp.task( "lint", function() {
     return gulp
-        .src( "src/**/*.js" )
+        .src( [ "src/**/*.js", "static/modules/**/*.js" ] )
         .pipe( gESLint() )
         .pipe( gESLint.format() );
 } );
