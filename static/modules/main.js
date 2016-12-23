@@ -11,13 +11,13 @@ import VueRouter from "vue-router";
 
 Vue.use( VueRouter );
 
-import TerminalsList from "./components/terminals-list";
-import TerminalDetails from "./components/terminal-details";
+import TerminalsList from "./components/terminals/list";
+import TerminalsDetails from "./components/terminals/details";
 
 let oRouter = new VueRouter( {
     "routes": [
         { "path": "/", "component": TerminalsList },
-        { "path": "/:id", "component": TerminalDetails },
+        { "path": "/:id", "component": TerminalsDetails },
     ],
 } );
 
@@ -27,7 +27,9 @@ let oApp = new Vue( {
             <header>
                 <h1>kach</h1>
             </header>
-            <router-view></router-view>
+            <main>
+                <router-view></router-view>
+            </main>
             <footer>
                 <a href="https://github.com/hepl-ria/kach">hepl-ria/kach</a>
             </footer>
