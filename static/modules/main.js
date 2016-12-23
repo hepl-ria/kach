@@ -11,13 +11,13 @@ import VueRouter from "vue-router";
 
 Vue.use( VueRouter );
 
-import TerminalsList from "./components/terminals-list";
-import TerminalDetails from "./components/terminal-details";
+import TerminalsList from "./components/terminals/list";
+import TerminalsDetails from "./components/terminals/details";
 
 let oRouter = new VueRouter( {
     "routes": [
         { "path": "/", "component": TerminalsList },
-        { "path": "/:id", "component": TerminalDetails },
+        { "path": "/:id", "component": TerminalsDetails },
     ],
 } );
 
