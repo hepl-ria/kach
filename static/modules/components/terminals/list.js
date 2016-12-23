@@ -68,6 +68,7 @@ let oTerminalsList = Vue.component( "terminals-list", {
                     // NOTE: for each terminal in data, we will replace the "bank" property (the id of the bank) by the getBank result (the data of the bank)
                     this.terminals = oResponse.data.map( ( oTerminal ) => {
                         oTerminal.bank = getBank( oTerminal.bank );
+
                         return oTerminal;
                     } );
                 } )
