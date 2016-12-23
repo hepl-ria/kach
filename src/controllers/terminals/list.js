@@ -25,7 +25,7 @@ export default function( oRequest, oResponse ) {
     }
 
     // check & cap radius
-    ( isNaN( iSearchRadius ) ) && ( iSearchRadius = DEFAULT_RADIUS );
+    isNaN( iSearchRadius ) && ( iSearchRadius = DEFAULT_RADIUS );
     ( iSearchRadius < DEFAULT_RADIUS ) && ( iSearchRadius = DEFAULT_RADIUS );
     ( iSearchRadius > MAX_RADIUS ) && ( iSearchRadius = MAX_RADIUS );
 
@@ -50,7 +50,7 @@ export default function( oRequest, oResponse ) {
 
             // clean empty state on terminals, clean useless properties AND compute distance
             aCleanTerminals = aTerminals.map( ( { _id, bank, latitude, longitude, address, empty, updated_at } ) => {
-                let bEmptyState = empty;
+                let bEmptyState = empty; // eslint-disable-line id-match
 
                 if ( Date.now() - ( new Date( updated_at ) ).getTime() > 24 * 3600 * 1000 && bEmptyState ) {
                     bEmptyState = false;
@@ -67,9 +67,9 @@ export default function( oRequest, oResponse ) {
 
             getTerminals()
                 .update( {
-                    "_id": { "$in": aTerminalsToReset }
-                }, {
-                    "$set": { "empty": false, "updated_at": new Date() }
+                    "_id": { "$in": aTerminalsToReset },
+                }, {
+                    "$set": { "empty": false, "updated_at": new Date() },
                 } );
 
             // sort by distance

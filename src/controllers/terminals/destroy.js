@@ -16,7 +16,7 @@ export default function( oRequest, oResponse ) {
 
     try {
         oTerminalID = new ObjectID( oRequest.params.id );
-    } catch( oError ) {
+    } catch ( oError ) {
         return error( oRequest, oResponse, new Error( "Invalid ID!" ), 400 );
     }
 

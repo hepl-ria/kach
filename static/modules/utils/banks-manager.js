@@ -7,7 +7,6 @@
  */
 
 import reqwest from "reqwest";
-import Promise from "bluebird";
 
 // NOTE: the goal here is to have a function, which can be called with or without a BankID, and will fetch banks from server, caching it in a variable, to avoid reloading all over again
 
@@ -17,6 +16,7 @@ export default function( sBankId = null ) {
     if ( sBankId && oBanks[ sBankId ] ) {
         return oBanks[ sBankId ];
     }
+
     return reqwest( {
         "url": "/banks",
         "method": "get",
@@ -28,6 +28,7 @@ export default function( sBankId = null ) {
             for ( let oBank of oResponse.data ) {
                 oBanks[ oBank.id ] = oBank;
             }
+
             return oBanks[ sBankId ] || null;
         } );
 }

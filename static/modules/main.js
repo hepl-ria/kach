@@ -14,14 +14,16 @@ Vue.use( VueRouter );
 import TerminalsList from "./components/terminals/list";
 import TerminalsDetails from "./components/terminals/details";
 
-let oRouter = new VueRouter( {
+let oRouter, oApp;
+
+oRouter = new VueRouter( {
     "routes": [
         { "path": "/", "component": TerminalsList },
         { "path": "/:id", "component": TerminalsDetails },
     ],
 } );
 
-let oApp = new Vue( {
+oApp = new Vue( {
     "template": `
         <div class="wrapper">
             <header>
