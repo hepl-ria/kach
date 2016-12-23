@@ -7,26 +7,33 @@
  */
 
 import Vue from "vue";
+import VueRouter from "vue-router";
 
-import "./components/cats-list";
-import "./components/secret";
+Vue.use( VueRouter );
+
+import TerminalsList from "./components/terminals-list";
+import TerminalDetails from "./components/terminal-details";
+
+let oRouter = new VueRouter( {
+    "routes": [
+        { "path": "/", "component": TerminalsList },
+        { "path": "/:id", "component": TerminalDetails },
+    ],
+} );
 
 let oApp = new Vue( {
     "template": `
-        <div class="box">
-            <p>{{ message }}</p>
-            <cats-list v-bind:elements="cats"></cats-list>
-            <secret v-bind:content="secret"></secret>
+        <div class="wrapper">
+            <header>
+                <h1>kach</h1>
+            </header>
+            <router-view></router-view>
+            <footer>
+                <a href="https://github.com/hepl-ria/kach">hepl-ria/kach</a>
+            </footer>
         </div>
     `,
-    "data": {
-        "message": "Hey from Vue!",
-        "secret": "I'm not a dog person!",
-        "cats": [
-            { "name": "Skitty", "age": 6 },
-            { "name": "Pixel", "age": 4 },
-        ],
-    },
+    "router": oRouter,
 } );
 
 oApp.$mount( "#app" );
